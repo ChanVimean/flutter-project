@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
         title: ListTile(
           leading: CircleAvatar(
             backgroundImage: NetworkImage(
-              "https://static.wikia.nocookie.net/wutheringwaves/images/d/dc/Hiyuki_Card.jpg/revision/latest/smart/width/250/height/250?cb=20260327233031",
+              "https://i.pinimg.com/736x/db/38/29/db382916e20ffe546ff6e5ae6a1b0de0.jpg",
             ),
             radius: 24,
             backgroundColor: Colors.transparent,
