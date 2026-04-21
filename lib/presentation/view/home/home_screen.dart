@@ -165,7 +165,9 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(24),
                         ),
                         child: CustomTextButton(
-                          action: () {},
+                          action: () {
+                            TODO: Categories
+                          },
                           text: item,
                           color: Colors.black,
                         ),
