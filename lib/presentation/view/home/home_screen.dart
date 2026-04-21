@@ -166,7 +166,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         child: CustomTextButton(
                           action: () {
-                            TODO: Categories
+                            // TODO: Categories
                           },
                           text: item,
                           color: Colors.black,
