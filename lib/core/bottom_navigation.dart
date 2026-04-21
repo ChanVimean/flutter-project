@@ -18,9 +18,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final List<Widget> screens = [
     HomeScreen(),
     ProductScreen(),
+    SearchScreen(),
     CartScreen(),
     AccountScreen(),
-    SearchScreen(),
   ];
 
   @override
@@ -40,12 +40,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
             icon: Icon(Icons.dashboard),
             label: 'Product',
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
         ],
       ),
     );

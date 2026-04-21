@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project/presentation/provider/cart_provider.dart';
 import 'package:project/presentation/provider/navigation_provider.dart';
 import 'package:project/presentation/provider/product_provider.dart';
+import 'package:project/presentation/view/product/product_screen.dart';
 import 'package:project/presentation/widget/custom_bento_generator.dart';
 import 'package:project/presentation/widget/custom_grid_layout.dart';
 import 'package:project/presentation/widget/custom_image_slider.dart';
@@ -19,6 +20,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final productProvider = context.watch<ProductProvider>();
     final cartProvider = context.watch<CartProvider>();
+    final categories = productProvider.products
+        // .map((product) => product.category)
+        .expand((p) => p.category)
+        .toSet()
+        .toList();
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
@@ -110,7 +116,12 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     CustomText("Special For You", textVariant: TextVariant.h2),
                     CustomTextButton(
-                      action: () {},
+                      action: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductScreen(),
+                        ),
+                      ),
                       text: 'See all',
                       fontSize: 14,
                     ),
@@ -123,9 +134,56 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    CustomText("Catgories", textVariant: TextVariant.h2),
+                    CustomTextButton(
+                      action: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductScreen(),
+                        ),
+                      ),
+                      text: 'See all',
+                      fontSize: 14,
+                    ),
+                  ],
+                ),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  height: 50,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 12),
+                    itemCount: categories.length,
+                    itemBuilder: (context, index) {
+                      final item = categories[index];
+                      return Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        child: CustomTextButton(
+                          action: () {},
+                          text: item,
+                          color: Colors.black,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                     CustomText("New Stock", textVariant: TextVariant.h2),
                     CustomTextButton(
-                      action: () {},
+                      action: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductScreen(),
+                        ),
+                      ),
                       text: 'See all',
                       fontSize: 14,
                     ),
