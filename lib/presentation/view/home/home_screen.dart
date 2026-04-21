@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
           Stack(
             children: [
               IconButton(
-                onPressed: () => context.read<NavigationProvider>().setIndex(2),
+                onPressed: () => context.read<NavigationProvider>().setIndex(3),
                 icon: Icon(Icons.shopping_cart_outlined),
               ),
               cartProvider.carts.isEmpty

@@ -71,4 +71,29 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
     await CartRepository.removeFromCart(uuid);
   }
+
+  // Checkout list
+  double subtotal() {
+    double subtotal = 0;
+    for (var c in carts) {
+      subtotal += c.price * (c.qty ?? 0);
+    }
+
+    return subtotal;
+  }
+
+  double discount() {
+    double staticDiscount = 0.1; // 10% discount
+    final test = subtotal() * staticDiscount;
+
+    return test;
+  }
+
+  double delivery() {
+    return 10; // 10$ delivery fee
+  }
+
+  double total() {
+    return subtotal() - discount() + delivery();
+  }
 }
