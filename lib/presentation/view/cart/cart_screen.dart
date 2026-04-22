@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project/presentation/provider/cart_provider.dart';
 import 'package:project/presentation/provider/product_provider.dart';
 import 'package:project/presentation/provider/theme_provider.dart';
+import 'package:project/presentation/view/cart/checkout_screen.dart';
 import 'package:project/presentation/view/detail/detail_screen.dart';
 import 'package:project/presentation/widget/custom_button.dart';
 import 'package:project/presentation/widget/custom_search_service.dart';
@@ -257,7 +258,10 @@ class CartScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   CustomButton(
-                    action: () {},
+                    action: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CheckoutScreen()),
+                    ),
                     text: 'Checkout',
                     textColor: Colors.white,
                   ),
