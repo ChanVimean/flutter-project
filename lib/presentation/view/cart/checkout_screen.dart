@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/presentation/provider/cart_provider.dart';
 import 'package:project/presentation/provider/checkout_provider.dart';
+import 'package:project/presentation/view/cart/payment_screen.dart';
 import 'package:project/presentation/widget/custom_button.dart';
 import 'package:project/presentation/widget/custom_section.dart';
 import 'package:project/presentation/widget/custom_text.dart';
@@ -118,7 +119,12 @@ class CheckoutScreen extends StatelessWidget {
                       ),
                       const Divider(height: 1, indent: 56),
                       ListTile(
-                        onTap: () {},
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const PaymentScreen(),
+                          ),
+                        ),
                         leading: const Icon(
                           Icons.add_circle_outline,
                           color: Colors.blue,
