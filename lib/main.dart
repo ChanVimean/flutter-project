@@ -6,6 +6,7 @@ import 'package:project/core/app_theme.dart';
 import 'package:project/data/service/cart_repository.dart';
 import 'package:project/presentation/provider/auth_provider.dart';
 import 'package:project/presentation/provider/cart_provider.dart';
+import 'package:project/presentation/provider/checkout_provider.dart';
 import 'package:project/presentation/provider/navigation_provider.dart';
 import 'package:project/presentation/provider/product_provider.dart';
 import 'package:project/presentation/provider/theme_provider.dart';
@@ -39,6 +40,7 @@ void main() async {
           ChangeNotifierProvider(create: (_) => AuthProvider()),
           ChangeNotifierProvider(create: (_) => ProductProvider()),
           ChangeNotifierProvider(create: (_) => CartProvider()..loadCart()),
+          ChangeNotifierProvider(create: (_) => CheckoutProvider()),
         ],
         child: const MyApp(),
       ),
