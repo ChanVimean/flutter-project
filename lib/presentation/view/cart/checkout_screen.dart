@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project/presentation/provider/cart_provider.dart';
 import 'package:project/presentation/provider/checkout_provider.dart';
+import 'package:project/presentation/widget/custom_button.dart';
 import 'package:project/presentation/widget/custom_section.dart';
 import 'package:project/presentation/widget/custom_text.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +13,7 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // This makes the widget rebuild whenever notifyListeners() is called
     final checkout = context.watch<CheckoutProvider>();
+    final cartProvider = context.watch<CartProvider>();
 
     return Scaffold(
       appBar: AppBar(
@@ -81,7 +84,6 @@ class CheckoutScreen extends StatelessWidget {
               ],
             ),
             // 3. Payment Method
-            // 3. Payment Method
             Section(
               title: 'Payment Method',
               children: [
@@ -133,8 +135,81 @@ class CheckoutScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16.0),
             // 4. Order Summary
+            CustomText('Order Summary', textVariant: TextVariant.h2),
+            const SizedBox(height: 16.0),
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: BorderRadius.circular(8.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withAlpha(10),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Column(
+                spacing: 8.0,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _summaryRow('Subtotal', cartProvider.subtotal()),
+                  _summaryRow('Discount Vouchers', cartProvider.discount()),
+                  _summaryRow('Delivery Subtotal', cartProvider.delivery()),
+                ],
+              ),
+            ),
           ],
         ),
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          border: Border(top: BorderSide(color: Colors.grey.withAlpha(20))),
+        ),
+        padding: const EdgeInsets.fromLTRB(24, 16, 24, 32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomText('Total', textVariant: TextVariant.h2),
+                CustomText(
+                  '\$${cartProvider.total().toStringAsFixed(2)}',
+                  textVariant: TextVariant.h2,
+                  color: Colors.blue[600],
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            // Action Button
+            CustomButton(
+              action: () {
+                // Logic for Confirm Order
+              },
+              text: 'Confirm Order',
+              textColor: Colors.white,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _summaryRow(String label, double amount) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CustomText(label, textVariant: TextVariant.body),
+          CustomText(
+            '\$${amount.toStringAsFixed(2)}',
+            textVariant: TextVariant.h3,
+          ),
+        ],
       ),
     );
   }
